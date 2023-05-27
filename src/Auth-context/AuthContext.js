@@ -12,16 +12,19 @@ const AuthContextProvider = (props) =>{
     const [token, settoken] = useState(initialToken)
     const userIsLoggedIn = !!token
 
+    
     const loginHandler = (token) =>{
         settoken(token)
         localStorage.setItem("token",token)
+        setTimeout(logoutHandler,300000)
     }
 
     const logoutHandler = () =>{
         settoken(null)
         localStorage.removeItem("token")
     }
-
+    
+    
     const ContextValue = {
         token : token,
         login : loginHandler,
